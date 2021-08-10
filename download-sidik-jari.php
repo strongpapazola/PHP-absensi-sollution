@@ -4,11 +4,11 @@
 
 <H3>Download Sidik Jari</H3>
 
-<?
-$IP=$HTTP_GET_VARS["ip"];
-$Key=$HTTP_GET_VARS["key"];
-$id=$HTTP_GET_VARS["id"];
-$fn=$HTTP_GET_VARS["fn"];
+<?php
+$IP=$_GET["ip"];
+$Key=$_GET["key"];
+$id=$_GET["id"];
+$fn=$_GET["fn"];
 
 if($IP=="") $IP="172.17.1.125";
 if($Key=="") $Key="0";
@@ -27,8 +27,8 @@ Finger No: <input type="Text" name="fn" size="1" value="<?=$fn?>"><BR><BR>
 </form>
 <BR>
 
-<?
-if($HTTP_GET_VARS["ip"]!=""){?>
+<?php
+if($_GET["ip"]!=""){?>
 
 	<table cellspacing="2" cellpadding="2" border="1">
 	<tr align="center">
@@ -39,7 +39,7 @@ if($HTTP_GET_VARS["ip"]!=""){?>
 	    <td align="left"><B>Template</B></td>		
 	</tr>
 
-	<?
+	<?php
 	$Connect = fsockopen($IP, "80", $errno, $errstr, 1);
 	if($Connect){
 		$soap_request="<GetUserTemplate><ArgComKey xsi:type=\"xsd:integer\">".$Key."</ArgComKey><Arg><PIN xsi:type=\"xsd:integer\">".$id."</PIN><FingerID xsi:type=\"xsd:integer\">".$fn."</FingerID></Arg></GetUserTemplate>";
@@ -73,9 +73,9 @@ if($HTTP_GET_VARS["ip"]!=""){?>
 		    <td><?=$Valid?></td>
 		    <td><?=$Template?></td>			
 		</tr>		
-	<?}?>
+	<?php } ?>
 </table>
-<?}?>
+<?php } ?>
 
 
 </body>

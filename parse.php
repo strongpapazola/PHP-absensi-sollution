@@ -1,4 +1,4 @@
-<?
+<?php
 function Parse_Data($data,$p1,$p2){
 	$data=" ".$data;
 	$hasil="";
